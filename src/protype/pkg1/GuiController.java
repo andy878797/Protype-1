@@ -120,21 +120,21 @@ public class GuiController implements Initializable {
         
         list.add(new LocalEvent(datePicker.getValue(),descriptionTextField.getText() + "$ in " + series.getValue()));
         ListView.setItems(list);
-        descriptionTextField.setText(null);
+        //descriptionTextField.setText(null);
         if(series.getValue().equals("food")){
-            food.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+           food.plusnumber((Double.parseDouble(descriptionTextField.getText())));
             
         }
         if(series.getValue().equals("cloth")){
-            cloth.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+           cloth.plusnumber(Double.parseDouble(descriptionTextField.getText()));
             
         }
         if(series.getValue().equals("living")){
-            living.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+           living.plusnumber(Double.parseDouble(descriptionTextField.getText()));
             
         }
         if(series.getValue().equals("traffic")){
-            traffic.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+           traffic.plusnumber(Double.parseDouble(descriptionTextField.getText()));
             
         }
         
@@ -172,7 +172,7 @@ public class GuiController implements Initializable {
         
         System.out.println(ListView.getItems().size());
         System.out.println(list);
-        System.out.println(Double.parseDouble(descriptionTextField.getText()));
+        System.out.println(food.Printnumber());
     }
     
     
