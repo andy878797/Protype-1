@@ -99,7 +99,7 @@ public class GuiController implements Initializable {
     Account cloth = new Account("cloth", 0);
     Account living = new Account("living", 0);
     Account traffic = new Account("traffic", 0);
-    
+    Account[] tempAccounts = new Account[100];
 
     
     @Override
@@ -111,7 +111,7 @@ public class GuiController implements Initializable {
     }    
     
     ObservableList<LocalEvent> list = FXCollections.observableArrayList();
-    
+    int k = 0;
       
    
     //static temp[] Names = new temp[100];
@@ -123,19 +123,18 @@ public class GuiController implements Initializable {
         //descriptionTextField.setText(null);
         if(series.getValue().equals("food")){
            food.plusnumber((Double.parseDouble(descriptionTextField.getText())));
-            
-        }
-        if(series.getValue().equals("cloth")){
+        }else if(series.getValue().equals("cloth")){
            cloth.plusnumber(Double.parseDouble(descriptionTextField.getText()));
-            
-        }
-        if(series.getValue().equals("living")){
+        }else if(series.getValue().equals("living")){
            living.plusnumber(Double.parseDouble(descriptionTextField.getText()));
-            
-        }
-        if(series.getValue().equals("traffic")){
+        }else if(series.getValue().equals("traffic")){
            traffic.plusnumber(Double.parseDouble(descriptionTextField.getText()));
-            
+        }
+        
+        if(!series.getValue().equals("food") || !series.getValue().equals("cloth") || !series.getValue().equals("living") || !series.getValue().equals("traffic")){
+            tempAccounts[k] = new Account(descriptionAddChoice.getText(), 0);
+            tempAccounts[k].plusnumber(Double.parseDouble(descriptionTextField.getText()));
+            k++;
         }
         
     }
@@ -172,7 +171,7 @@ public class GuiController implements Initializable {
         
         System.out.println(ListView.getItems().size());
         System.out.println(list);
-        System.out.println(food.Printnumber());
+        System.out.println(tempAccounts[0].Printnumber());
     }
     
     
