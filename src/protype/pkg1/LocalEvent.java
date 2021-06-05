@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 public class LocalEvent {
     private String description;
+    private String descriptionAddChoice;
     private LocalDate date;
 
     /**
@@ -21,12 +22,20 @@ public class LocalEvent {
     public String getDescription() {
         return description;
     }
+    
+    public String descriptionAddChoice() {
+        return descriptionAddChoice;
+    }
 
     /**
      * @param description the description to set
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public void setdescriptionAddChoice(String description) {
+        this.descriptionAddChoice = descriptionAddChoice;
     }
 
     /**
@@ -51,7 +60,7 @@ public class LocalEvent {
 
     @Override
     public String toString() {
-        return "At:" + this.getDate() + " " + this.getDescription();
+        return "At: " + this.getDate() + " You pay " + this.getDescription();
     }
 
 }
