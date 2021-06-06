@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package protype.pkg1;
-
+import protype.pkg1.GuiController;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 
 /**
  * FXML Controller class
@@ -21,7 +24,7 @@ public class PieChartWinController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }

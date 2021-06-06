@@ -53,6 +53,15 @@ class Account{
         public double Printnumber(){
                 return this.number;
         }
+        
+        public void getName(String NameString){
+            this.name += NameString;
+        }
+        
+        public String PrintName(){
+            return this.name;
+        }
+        
 
 } 
 
@@ -72,7 +81,10 @@ public class GuiController implements Initializable {
     private DatePicker datePicker;
     
     @FXML
-    private PieChart piechart;
+    private PieChart piechart_test;
+    
+    @FXML
+    private Button showPieChart;
 
     @FXML
     private TextField descriptionTextField;
@@ -99,83 +111,91 @@ public class GuiController implements Initializable {
     Account cloth = new Account("cloth", 0);
     Account living = new Account("living", 0);
     Account traffic = new Account("traffic", 0);
+    
     Account[] tempAccounts = new Account[100];
-
+    
+    
+    
+    
+    int k = 0;
+    int Number_choice = 0;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        int i = 0;
         datePicker.setValue(LocalDate.now());
         series.getItems().addAll("food","cloth","living","traffic");
-        
-        
-    }    
+    }
     
     ObservableList<LocalEvent> list = FXCollections.observableArrayList();
-    int k = 0;
-      
-   
-    //static temp[] Names = new temp[100];
+    
     @FXML
     private void addEvent(Event event) {
-        
-        list.add(new LocalEvent(datePicker.getValue(),descriptionTextField.getText() + "$ in " + series.getValue()));
-        ListView.setItems(list);
-        //descriptionTextField.setText(null);
-        if(series.getValue().equals("food")){
-           food.plusnumber((Double.parseDouble(descriptionTextField.getText())));
-        }else if(series.getValue().equals("cloth")){
-           cloth.plusnumber(Double.parseDouble(descriptionTextField.getText()));
-        }else if(series.getValue().equals("living")){
-           living.plusnumber(Double.parseDouble(descriptionTextField.getText()));
-        }else if(series.getValue().equals("traffic")){
-           traffic.plusnumber(Double.parseDouble(descriptionTextField.getText()));
-        }
-        
-        if(!series.getValue().equals("food") || !series.getValue().equals("cloth") || !series.getValue().equals("living") || !series.getValue().equals("traffic")){
-            tempAccounts[k] = new Account(descriptionAddChoice.getText(), 0);
-            tempAccounts[k].plusnumber(Double.parseDouble(descriptionTextField.getText()));
-            k++;
-        }
-        
+            int i = 0;
+            list.add(new LocalEvent(datePicker.getValue(),descriptionTextField.getText() + "$ in " + series.getValue()));
+            ListView.setItems(list);
+            if(series.getValue().equals("food")){
+                food.plusnumber((Double.parseDouble(descriptionTextField.getText())));
+            }else if(series.getValue().equals("cloth")){
+                cloth.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+            }else if(series.getValue().equals("living")){
+                living.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+            }else if(series.getValue().equals("traffic")){
+                traffic.plusnumber(Double.parseDouble(descriptionTextField.getText()));
+            }else if (!series.getValue().equals("food") || !series.getValue().equals("cloth") || !series.getValue().equals("living") || !series.getValue().equals("traffic")){
+                for(int j = 0;j <= 100; j++){
+                    if(series.getValue().equals(tempAccounts[j].PrintName())){
+                    tempAccounts[j].plusnumber(Double.parseDouble(descriptionTextField.getText()));
+                    break;
+                    }
+                }//for's
+            }//while's
+        descriptionTextField.setText(null);
     }
- 
+        
+    
+    
     @FXML
     private void addChoice() throws IOException{
-            int size = 0;
+            
             if(!descriptionAddChoice.getText().equals("")){
                 series.getItems().add(descriptionAddChoice.getText());
+                tempAccounts[Number_choice] = new Account(descriptionAddChoice.getText(), 0);
                 descriptionAddChoice.setText(null);
-                //for()
-                size++;
+                Number_choice++;
             }
             else{
                 System.out.println("empty");
-            }
-            
+            }     
     }
+    
     @FXML
     void Trans(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PieChartWin.fxml"));
-            Parent root1 = (Parent)fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch (Exception e) {
-            System.out.println("Can not load new window");
-        }
     }
+    
     
     @FXML
     void show(ActionEvent event) {
         
         System.out.println(ListView.getItems().size());
         System.out.println(list);
-        System.out.println(tempAccounts[0].Printnumber());
+        System.out.println(Number_choice);
+        System.out.println(tempAccounts[1].Printnumber());
+        
     }
     
-    
-
-    
-    
+    @FXML
+    void showPieChart(ActionEvent event) {
+        ObservableList<PieChart.Data> piecharDatas = FXCollections.observableArrayList(
+                new PieChart.Data("food",food.Printnumber()),
+                new PieChart.Data("cloth",cloth.Printnumber()),
+                new PieChart.Data("living",living.Printnumber()),
+                new PieChart.Data("traffic",traffic.Printnumber())
+            );
+        
+        piechart_test.setData(piecharDatas);
+        }
 }
+        
+
