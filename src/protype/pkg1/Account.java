@@ -9,8 +9,7 @@ package protype.pkg1;
  *
  * @author s1083729
  */
-public class Account_class {
-    class Account{
+public class Account {
         private String name;
         private double number;
         
@@ -23,8 +22,15 @@ public class Account_class {
             this.number += amount;
         }
         
-        public String toString(){
-            return String.format(this.name,this.number);
+        public double Printnumber(){
+                return this.number;
         }
-    } 
-}
+        
+        public void getName(String NameString){
+            this.name += NameString;
+        }
+        
+        public String PrintName(){
+            return this.name;
+        }
+} 

@@ -5,13 +5,16 @@
  */
 package protype.pkg1;
 
-import protype.pkg1.Account_class;
+import protype.pkg1.Account;
 import com.sun.scenario.effect.Flood;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -32,38 +35,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.script.ScriptEngine;
 
 
 
-class Account{
-        private String name;
-        private double number;
-        
-        public Account(String name,double number){
-            this.name = name;
-            this.number = number;
-        }
-        
-        public void plusnumber(double amount){
-            this.number += amount;
-        }
-        
-        public double Printnumber(){
-                return this.number;
-        }
-        
-        public void getName(String NameString){
-            this.name += NameString;
-        }
-        
-        public String PrintName(){
-            return this.name;
-        }
-        
 
-} 
 
 /**
  *
@@ -172,6 +150,24 @@ public class GuiController implements Initializable {
     
     @FXML
     void Trans(ActionEvent event) {
+        final FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = 
+                new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(null);
+        if(file != null)
+            SaveFile(list.toString(), file);
+        
+    }
+    
+    private void SaveFile(String content,File file){
+        try {
+            FileWriter fileWriter;
+            fileWriter = new FileWriter(file);
+            fileWriter.write(content);
+            fileWriter.close();
+        } catch (Exception e) {
+        }
     }
     
     
