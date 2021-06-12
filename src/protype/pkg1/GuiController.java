@@ -34,6 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -89,15 +90,10 @@ public class GuiController implements Initializable {
     Account cloth = new Account("cloth", 0);
     Account living = new Account("living", 0);
     Account traffic = new Account("traffic", 0);
-    
     Account[] tempAccounts = new Account[100];
-    
-    
-    
-    
+
     int k = 0;
     int Number_choice = 0;
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -127,8 +123,8 @@ public class GuiController implements Initializable {
                     tempAccounts[j].plusnumber(Double.parseDouble(descriptionTextField.getText()));
                     break;
                     }
-                }//for's
-            }//while's
+                }
+            }
         descriptionTextField.setText(null);
     }
         
@@ -177,7 +173,7 @@ public class GuiController implements Initializable {
         System.out.println(ListView.getItems().size());
         System.out.println(list);
         System.out.println(Number_choice);
-        System.out.println(tempAccounts[1].Printnumber());
+        //System.out.println(tempAccounts[1].Printnumber());
         
     }
     
@@ -190,8 +186,12 @@ public class GuiController implements Initializable {
                 new PieChart.Data("traffic",traffic.Printnumber())
             );
         
+        
+        PieChart pieChart = new PieChart(piecharDatas);
         piechart_test.setData(piecharDatas);
+        
         }
+
 }
         
 
