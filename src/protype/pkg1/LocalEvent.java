@@ -60,7 +60,7 @@ public class LocalEvent {
 
     @Override
     public String toString() {
-        return "At: " + this.getDate() + " You pay " + this.getDescription();
+        return this.getDate() + ": You pay " + this.getDescription();
     }
 
 }

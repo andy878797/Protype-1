@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -179,19 +180,34 @@ public class GuiController implements Initializable {
     
     @FXML
     void showPieChart(ActionEvent event) {
-        ObservableList<PieChart.Data> piecharDatas = FXCollections.observableArrayList(
+        ObservableList<PieChart.Data> pcData = FXCollections.observableArrayList();
+        pcData = FXCollections.observableArrayList();
+        pcData.add(new PieChart.Data("food", food.Printnumber()));
+        pcData.add(new PieChart.Data("cloth", cloth.Printnumber()));
+        pcData.add(new PieChart.Data("living", living.Printnumber()));
+        pcData.add(new PieChart.Data("traffic", traffic.Printnumber()));
+        for(int g =0; g < Number_choice ;g++)
+            pcData.add(new PieChart.Data(tempAccounts[g].PrintName(), tempAccounts[g].Printnumber()));
+        piechart_test.setData(pcData);
+        PieChart piechart = new PieChart();
+        
+    }
+    
+    /*private ObservableList<Data> getChartData(){
+        ObservableList<Data> list = FXCollections.observableArrayList();
+        list.addAll(
                 new PieChart.Data("food",food.Printnumber()),
                 new PieChart.Data("cloth",cloth.Printnumber()),
                 new PieChart.Data("living",living.Printnumber()),
                 new PieChart.Data("traffic",traffic.Printnumber())
-            );
-        
-        
-        PieChart pieChart = new PieChart(piecharDatas);
-        piechart_test.setData(piecharDatas);
-        
-        }
-
+        );
+        /*while(Number_choice>0)
+            for(int g = 0; g < Number_choice ;++g){
+                list.add(new PieChart.Data(tempAccounts[g].PrintName(), tempAccounts[g].Printnumber()));
+            }
+            */
+        //return list;
+    //} 
 }
         
 

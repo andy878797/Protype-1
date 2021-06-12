@@ -42,7 +42,7 @@ public class Protype1 extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Ready");
         stage.setScene(scene);
-        //stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 
